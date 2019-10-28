@@ -7,6 +7,8 @@ import TestGet from "./components/Test";
 import Navbar from "./components/Navbar";
 
 function App() {
+  //useEffect(() => {pokemon.json = });
+
   return (
     <>
       <Navbar />
