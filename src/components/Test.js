@@ -1,10 +1,16 @@
 import React from "react";
-import { useState } from "react";
-//import GetPokemon from "../GetPokemon";
+import { useState, useEffect } from "react";
 
 function TestGet() {
   const [pokemon, setPokemon] = useState();
-  const [gotPokemon, setGotPokemon] = useState("Initial");
+
+  let thePokemon = {};
+
+  console.log(pokemon);
+
+  useEffect(() => {
+    thePokemon = httpGet("https://pokeapi.co/api/v2/pokemon/");
+  }, []);
 
   function handleInputChange(event) {
     setPokemon(event.target.value);
@@ -12,24 +18,23 @@ function TestGet() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    testSubmit();
-    //httpGet("https://pokeapi.co/api/v2/pokemon/" + pokemon + "/").toString()
+    console.log(httpGet("https://pokeapi.co/api/v2/stat/" + pokemon));
+  }
+
+  function printThing() {
+    //console.log(thePokemon);
+    console.log(thePokemon.affecting_moves);
   }
 
   function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.open("GET", theUrl, false);
     xmlHttp.send(null);
     return xmlHttp.responseText;
   }
 
-  function testSubmit() {
-    console.log(httpGet("https://pokeapi.co/api/v2/stat/" + pokemon));
-  }
-
   return (
     <>
-      <button onClick={testSubmit}>Test Button</button>
       <p>Test</p>
       <div className="form-group">
         <label>Pokemon Number:</label>
@@ -42,7 +47,9 @@ function TestGet() {
         />
       </div>
       <input type="submit" className="btn btn-primary" onClick={handleSubmit} />
-      <p value={gotPokemon}></p>
+      <button className="btn btn-primary ml-2" onClick={printThing}>
+        Check all pokemon
+      </button>
     </>
   );
 }

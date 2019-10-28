@@ -5,6 +5,9 @@ import "./App.css";
 
 import TestGet from "./components/Test";
 import Navbar from "./components/Navbar";
+import Pokemons from "./components/Pokemons";
+import Pokemon from "./components/Pokemon";
+import { Route } from "react-router-dom";
 
 function App() {
   //useEffect(() => {pokemon.json = });
@@ -13,8 +16,10 @@ function App() {
     <>
       <Navbar />
       <div className="container">
-        <TestGet />
-        <p>Hello</p>
+        {/* <TestGet />
+        <p>Hello</p> */}
+        <Route path="/" component={Pokemons} />
+        <Route path="/pokemon" component={Pokemon} />
       </div>
     </>
   );
