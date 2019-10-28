@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PokemonCard from "./PokemonCard";
+import startFavourite from "./SetFavourites";
 
 const Pokemons = () => {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -8,6 +9,7 @@ const Pokemons = () => {
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
       setAllPokemons(res.data.results);
+      startFavourite();
     });
   }, []);
 

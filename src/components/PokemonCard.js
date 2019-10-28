@@ -4,23 +4,35 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const PokemonCard = ({ pokemon, id }) => {
-  const [img, setImg] = useState("");
   const [pokemonID, setPokemonID] = useState("");
-  const [favourite, setFavourite] = useState(false);
+  const [favourite, setFavourite] = useState();
 
   useEffect(() => {
-    axios.get(pokemon.url).then(res => setPokemonID(res.data.id));
-  }, []);
+    axios.get(pokemon.url).then(res => {
+      setPokemonID(res.data.id);
+    });
+    if (localStorage.getItem("favouritesList") != null) {
+      setFavourite(
+        JSON.parse(localStorage.getItem("favouritesList"))[pokemonID - 1]
+      );
+    }
+  }, [pokemonID]);
+
+  useEffect(() => {
+    if (localStorage.getItem("favouritesList") != null) {
+      let tempFavouriteList = JSON.parse(
+        localStorage.getItem("favouritesList")
+      );
+      tempFavouriteList[pokemonID - 1] = favourite;
+      localStorage.setItem("favouritesList", JSON.stringify(tempFavouriteList));
+    }
+  }, [favourite]);
 
   function handleFavouriteClick() {
-    console.log();
     if (favourite === false) {
       setFavourite(true);
     } else if (favourite === true) {
       setFavourite(false);
-    } else {
-      console.log("Favourite Error");
-      debugger;
     }
   }
 
@@ -42,6 +54,7 @@ const PokemonCard = ({ pokemon, id }) => {
         <div className="card-body">
           <h5 className="card-title">{pokemon.name} </h5>
           <i onClick={handleFavouriteClick} className={favouriteClass}></i>
+          <br />
           <Link to={`/pokemon/${pokemon.name}`} className="nes-btn">
             More Details
           </Link>
