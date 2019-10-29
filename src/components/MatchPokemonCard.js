@@ -21,8 +21,6 @@ const MatchPokemonCard = ({ id, setStat, compareNo }) => {
     }
   }, [id]);
 
-  console.log(compare);
-
   useEffect(() => {
     if (pokemon && pokemonMoves) {
       setStat([

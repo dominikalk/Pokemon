@@ -22,8 +22,6 @@ const Pokemon = props => {
     }
   }, [pokemon]);
 
-  console.log(pokemon);
-
   return (
     <>
       <div className="nes-container is-rounded mt-3">

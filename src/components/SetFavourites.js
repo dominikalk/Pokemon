@@ -24,7 +24,6 @@ function startFavourite() {
     ];
     localStorage.setItem("favouritesList", JSON.stringify(startArray));
   }
-  console.log(JSON.parse(localStorage.getItem("favouritesList")));
 }
 
 export default startFavourite;
