@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PokemonCard.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const PokemonCard = ({ pokemon, id }) => {
   const [pokemonID, setPokemonID] = useState("");
@@ -41,7 +42,7 @@ const PokemonCard = ({ pokemon, id }) => {
     : "nes-icon star";
 
   return (
-    <div style={{ width: "31%", margin: "1%" }}>
+    <div className="how-wide-card">
       <div className="card mt-2 text-center" style={{ width: "18rem" }}>
         {pokemonID !== "" && (
           <img
@@ -52,15 +53,13 @@ const PokemonCard = ({ pokemon, id }) => {
           />
         )}
         <div className="card-body">
-          <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
-            {pokemon.name}{" "}
-          </h5>
+          <h5 className="card-title flexing-font-card">{pokemon.name} </h5>
           <i onClick={handleFavouriteClick} className={favouriteClass}></i>
           <br />
           <Link
             to={`/pokemon/${pokemon.name}`}
-            className="nes-btn"
-            style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+            className="nes-btn flexing-font-card"
+            style={{ width: "90%", margin: "5%" }}
           >
             More Details
           </Link>

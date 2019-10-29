@@ -3,6 +3,7 @@ import "./PokemonCard.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./MatchPokemonCard.css";
+import "../App.css";
 
 const MatchPokemonCard2 = ({ id, compareNo, compare }) => {
   const [pokemonMoves, setPokemonMoves] = useState([]);
@@ -58,7 +59,7 @@ const MatchPokemonCard2 = ({ id, compareNo, compare }) => {
               alt={`${pokemon.name} pokemon`}
             />
             <div className="card-body">
-              <h4 className="card-title" style={{ fontSize: "2vw" }}>
+              <h4 className="card-title flexing-font-card">
                 <b>{pokemon.name}</b>
               </h4>
               <p style={{ fontSize: "1.5vw", margin: "0px" }}>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PokemonCard.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
   const [pokemonID, setPokemonID] = useState("");
@@ -47,7 +48,7 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
   const selectedClass = !selected ? "nes-btn" : "nes-btn is-success";
 
   return (
-    <div style={{ width: "31%", margin: "1%" }}>
+    <div className="how-wide-card">
       <div className="card mt-2 text-center" style={{ width: "18rem" }}>
         {pokemonID !== "" && (
           <img
@@ -57,18 +58,16 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
           />
         )}
         <div className="card-body">
-          <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
-            {pokemon.name}{" "}
-          </h5>
+          <h5 className="card-title flexing-font-card">{pokemon.name} </h5>
           {/*<Link to={`/pokemon/${pokemon.name}`} className="nes-btn">
             Select
         </Link>*/}
           <button
             className={selectedClass}
             onClick={handleSelectClick}
-            style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+            style={{ width: "90%", margin: "5%" }}
           >
-            Select
+            <div className="flexing-font-card">Select</div>
           </button>
         </div>
       </div>

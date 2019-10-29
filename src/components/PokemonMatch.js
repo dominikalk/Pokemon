@@ -109,7 +109,7 @@ function PokemonMatch() {
         )}
       </div>
 
-      <Link to={"/matchups"} className="nes-btn">
+      <Link to={"/matchups"} className="nes-btn mt-3">
         Back
       </Link>
     </>

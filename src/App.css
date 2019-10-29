@@ -16,3 +16,25 @@ body {
   margin-right: auto !important;
   margin-left: auto !important;
 }
+
+@media (max-width: 767px) {
+  .how-wide-card {
+    width: 48%;
+    margin: 1%;
+  }
+
+  .flexing-font-card {
+    font-size: 3vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .how-wide-card {
+    width: 31%;
+    margin: 1%;
+  }
+
+  .flexing-font-card {
+    font-size: 2vw;
+  }
+}
