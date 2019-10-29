@@ -4,9 +4,9 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div className="d-flex justify-content-center align-items-center flex-wrap">
+    <div className="d-sm-flex justify-content-center align-items-center flex-wrap">
       {/*Pokemon Card*/}
-      <div style={{ width: "31%", margin: "1%" }}>
+      <div className="how-wide">
         <div className="card mt-2 text-center" style={{ width: "18rem" }}>
           <img
             src={require("../assets/pokemon.jpg")}
@@ -14,13 +14,13 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
+            <h5 className="card-title flexing-font">
               <b>Pokemon List</b>
             </h5>
             <Link
               to="/pokemon"
-              className="nes-btn"
-              style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+              className="nes-btn flexing-font2"
+              style={{ width: "90%", margin: "5%" }}
             >
               Go To Pokemon
             </Link>
@@ -29,7 +29,7 @@ function Home() {
       </div>
 
       {/*Favourite Card*/}
-      <div style={{ width: "31%", margin: "1%" }}>
+      <div className="how-wide">
         <div className="card mt-2 text-center" style={{ width: "18rem" }}>
           <img
             src={require("../assets/pokeball.jpg")}
@@ -37,22 +37,25 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
+            <h5
+              className="card-title flexing-font"
+              // style={{ fontSize: "1.5vw" }}
+            >
               <b>Favourite Pokemon</b>
             </h5>
             <Link
               to="/favourites"
-              className="nes-btn small-font"
+              className="nes-btn flexing-font2"
               style={{ width: "90%", margin: "5%" }}
             >
-              <div style={{ fontSize: "1.2vw" }}>Go To favourites</div>
+              Go To favourites
             </Link>
           </div>
         </div>
       </div>
 
       {/*Match Up Card*/}
-      <div style={{ width: "31%", margin: "1%" }}>
+      <div className="how-wide">
         <div className="card mt-2 text-center" style={{ width: "18rem" }}>
           <img
             src={require("../assets/matchup.jpg")}
@@ -60,13 +63,13 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
+            <h5 className="card-title flexing-font">
               <b>Match Up Pokemon</b>
             </h5>
             <Link
               to="/matchups"
-              className="nes-btn"
-              style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+              className="nes-btn flexing-font2"
+              style={{ width: "90%", margin: "5%" }}
             >
               Go To Match Ups
             </Link>
