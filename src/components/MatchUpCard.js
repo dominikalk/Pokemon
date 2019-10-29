@@ -13,6 +13,26 @@ const MatchUpCard = ({ pokemon, id }) => {
     });
   }, [pokemonID]);
 
+  useEffect(() => {
+    if (localStorage.getItem("match1") === null) {
+      localStorage.setItem("match1", null);
+      localStorage.setItem("match2", null);
+    }
+    if (selected === true) {
+      if (localStorage.getItem("match1") === "null") {
+        localStorage.setItem("match1", pokemonID);
+      } else if (localStorage.getItem("match2") === "null") {
+        localStorage.setItem("match2", pokemonID);
+      }
+    } else {
+      if (localStorage.getItem("match1") === pokemonID.toString()) {
+        localStorage.setItem("match1", null);
+      } else if (localStorage.getItem("match2") === pokemonID.toString()) {
+        localStorage.setItem("match2", null);
+      }
+    }
+  }, [selected]);
+
   function handleSelectClick() {
     setSelected(!selected);
   }
@@ -24,7 +44,6 @@ const MatchUpCard = ({ pokemon, id }) => {
       <div className="card mt-2 text-center" style={{ width: "18rem" }}>
         {pokemonID !== "" && (
           <img
-            //src={require("../assets/pokemon.jpg")}
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonID}.png`}
             className="card-img-top"
             alt={`${pokemon.name} pokemon`}

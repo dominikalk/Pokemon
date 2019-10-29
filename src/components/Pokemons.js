@@ -14,12 +14,15 @@ const Pokemons = () => {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center align-items-center flex-wrap">
-      {allPokemons &&
-        allPokemons.map((pokemon, i) => (
-          <PokemonCard pokemon={pokemon} key={i} id={i} />
-        ))}
-    </div>
+    <>
+      <h3 className="text-center mt-3">Pokemon List</h3>
+      <div className="d-flex justify-content-center align-items-center flex-wrap">
+        {allPokemons &&
+          allPokemons.map((pokemon, i) => (
+            <PokemonCard pokemon={pokemon} key={i} id={i} />
+          ))}
+      </div>
+    </>
   );
 };
 

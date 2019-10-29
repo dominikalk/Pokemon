@@ -36,6 +36,12 @@ function Favourites() {
         </div>
       ) : null}
 
+      {hasLength ? (
+        <div>
+          <h4 className="text-center mt-3">Favourite Pokemon</h4>
+        </div>
+      ) : null}
+
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         {allPokemons &&
           favourites &&
