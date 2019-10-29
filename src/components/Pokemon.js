@@ -31,60 +31,23 @@ const Pokemon = props => {
           <div className="row">
             <div className="col-5">
               <img
-                //src={require("../assets/pokemon.jpg")}
-
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
                 className="card-img-top"
                 alt={`${pokemon.name} pokemon`}
               />
             </div>
             <div className="col-7 my-auto">
-              <p>
+              <p style={{ fontSize: "2.2vw" }}>
                 <b>name: {pokemon.name}</b>
               </p>
-              <p>Base Experience: {pokemon.base_experience}</p>
-              <p>Accuracy: {pokeMoves.accuracy}</p>
-              {/* <div className="row">
-                <div className="col-5 y-center">
-                  <p className="y-center">Accuracy: {pokeMoves.accuracy} </p>
-                </div>
-                <div className="col-7">
-                  <progress
-                    class="nes-progress is-error"
-                    value={pokeMoves.accuracy}
-                    max="100"
-                  ></progress>
-                </div>
-              </div> */}
-              {/*<progress
-                class="nes-progress is-error"
-                value={pokeMoves.accuracy}
-                max="100"
-              ></progress>*/}
-              <p>PP: {pokeMoves.pp}</p>
-              <p>Priority: {pokeMoves.priority}</p>
-              <p>Power: {pokeMoves.power}</p>
-              {/* <div className="row">
-                <div className="col-4 y-center">
-                  <p className="y-center">Power: {pokeMoves.power} </p>
-                </div>
-                <div className="col-8">
-                  <progress
-                    class="nes-progress is-error"
-                    value={pokeMoves.power}
-                    max="100"
-                  ></progress>
-                </div>
-              </div> */}
-
-              {/*<progress
-                class="nes-progress is-error"
-                value={pokeMoves.power}
-                max="100"
-              ></progress>*/}
-              {/*{pokemon.types.map((type, i) => (
-                <p key={i}>Type: {type.type.name}</p>
-              ))}*/}
+              <p style={{ fontSize: "1.8vw" }}>
+                Base Experience: {pokemon.base_experience}
+              </p>
+              <p style={{ fontSize: "1.8vw" }}>
+                Accuracy: {pokeMoves.accuracy}
+              </p>
+              <p style={{ fontSize: "1.8vw" }}>PP: {pokeMoves.pp}</p>
+              <p style={{ fontSize: "1.8vw" }}>Power: {pokeMoves.power}</p>
             </div>
           </div>
         )}

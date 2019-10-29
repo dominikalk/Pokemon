@@ -52,10 +52,16 @@ const PokemonCard = ({ pokemon, id }) => {
           />
         )}
         <div className="card-body">
-          <h5 className="card-title">{pokemon.name} </h5>
+          <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
+            {pokemon.name}{" "}
+          </h5>
           <i onClick={handleFavouriteClick} className={favouriteClass}></i>
           <br />
-          <Link to={`/pokemon/${pokemon.name}`} className="nes-btn">
+          <Link
+            to={`/pokemon/${pokemon.name}`}
+            className="nes-btn"
+            style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+          >
             More Details
           </Link>
         </div>

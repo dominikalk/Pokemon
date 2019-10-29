@@ -57,11 +57,17 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
           />
         )}
         <div className="card-body">
-          <h5 className="card-title">{pokemon.name} </h5>
+          <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
+            {pokemon.name}{" "}
+          </h5>
           {/*<Link to={`/pokemon/${pokemon.name}`} className="nes-btn">
             Select
         </Link>*/}
-          <button className={selectedClass} onClick={handleSelectClick}>
+          <button
+            className={selectedClass}
+            onClick={handleSelectClick}
+            style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+          >
             Select
           </button>
         </div>

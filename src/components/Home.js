@@ -14,10 +14,14 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title">
+            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
               <b>Pokemon List</b>
             </h5>
-            <Link to="/pokemon" className="nes-btn">
+            <Link
+              to="/pokemon"
+              className="nes-btn"
+              style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+            >
               Go To Pokemon
             </Link>
           </div>
@@ -33,11 +37,15 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title">
+            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
               <b>Favourite Pokemon</b>
             </h5>
-            <Link to="/favourites" className="nes-btn small-font">
-              Go To favourites
+            <Link
+              to="/favourites"
+              className="nes-btn small-font"
+              style={{ width: "90%", margin: "5%" }}
+            >
+              <div style={{ fontSize: "1.2vw" }}>Go To favourites</div>
             </Link>
           </div>
         </div>
@@ -52,10 +60,14 @@ function Home() {
             alt="Pokemon List"
           />
           <div className="card-body">
-            <h5 className="card-title">
+            <h5 className="card-title" style={{ fontSize: "1.5vw" }}>
               <b>Match Up Pokemon</b>
             </h5>
-            <Link to="/matchups" className="nes-btn small-font">
+            <Link
+              to="/matchups"
+              className="nes-btn"
+              style={{ width: "90%", margin: "5%", fontSize: "1.2vw" }}
+            >
               Go To Match Ups
             </Link>
           </div>
