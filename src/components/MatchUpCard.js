@@ -3,7 +3,7 @@ import "./PokemonCard.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const MatchUpCard = ({ pokemon, id }) => {
+const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
   const [pokemonID, setPokemonID] = useState("");
   const [selected, setSelected] = useState(false);
 
@@ -13,27 +13,34 @@ const MatchUpCard = ({ pokemon, id }) => {
     });
   }, [pokemonID]);
 
-  useEffect(() => {
-    if (localStorage.getItem("match1") === null) {
-      localStorage.setItem("match1", null);
-      localStorage.setItem("match2", null);
-    }
-    if (selected === true) {
-      if (localStorage.getItem("match1") === "null") {
-        localStorage.setItem("match1", pokemonID);
-      } else if (localStorage.getItem("match2") === "null") {
-        localStorage.setItem("match2", pokemonID);
-      }
-    } else {
-      if (localStorage.getItem("match1") === pokemonID.toString()) {
-        localStorage.setItem("match1", null);
-      } else if (localStorage.getItem("match2") === pokemonID.toString()) {
-        localStorage.setItem("match2", null);
-      }
-    }
-  }, [selected]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("match1") === null) {
+  //     localStorage.setItem("match1", null);
+  //     localStorage.setItem("match2", null);
+  //   }
+  //   if (selected === true) {
+  //     if (localStorage.getItem("match1") === "null") {
+  //       localStorage.setItem("match1", pokemonID);
+  //     } else if (localStorage.getItem("match2") === "null") {
+  //       localStorage.setItem("match2", pokemonID);
+  //     }
+  //   } else {
+  //     if (localStorage.getItem("match1") === pokemonID.toString()) {
+  //       localStorage.setItem("match1", null);
+  //     } else if (localStorage.getItem("match2") === pokemonID.toString()) {
+  //       localStorage.setItem("match2", null);
+  //     }
+  //   }
+  // }, [selected]);
 
   function handleSelectClick() {
+    if (selected === false) {
+      changePoke(pokemonID, true);
+      changeNo(true);
+    } else {
+      changePoke(pokemonID, false);
+      changeNo(false);
+    }
     setSelected(!selected);
   }
 

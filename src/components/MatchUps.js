@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import MatchUpCard from "./MatchUpCard";
+import "../App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 function MatchUps() {
   const [allPokemons, setAllPokemons] = useState([]);
+  const [noSelected, setNoSelected] = useState(0);
+  const [pokemonSelected, setPokemonSelected] = useState([]);
 
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
@@ -11,13 +18,55 @@ function MatchUps() {
     });
   }, []);
 
+  const changeMatchUpNo = isUp => {
+    if (isUp === false) {
+      setNoSelected(noSelected - 1);
+    } else {
+      setNoSelected(noSelected + 1);
+    }
+  };
+
+  function changePokemon(pokeID, isAdd) {
+    if (isAdd) {
+      let tempArray = pokemonSelected;
+      tempArray.push(pokeID);
+      setPokemonSelected(tempArray);
+    } else {
+      let tempArray = pokemonSelected;
+      tempArray.splice(tempArray.indexOf(pokeID), 1);
+      setPokemonSelected(tempArray);
+    }
+  }
+
+  function handleMatchClick() {
+    if (pokemonSelected.length < 2) {
+      toast.error("Too Few - You must select 2 pokemon");
+    } else if (pokemonSelected.length === 2) {
+      toast.success("Yay, lettssss gogogogogoo");
+    } else {
+      toast.error("Too Many - You must select 2 pokemon");
+    }
+  }
+
   return (
     <div>
-      <h4 className="mt-3 text-center">To Match two Pokemon up select them</h4>
+      <h4 className="mt-3 text-center">Select 2 pokemon to see who wins</h4>
+      <div className="x-center mx-auto text-center">
+        <button className="nes-btn x-center mx-auto" onClick={handleMatchClick}>
+          Match Up
+        </button>
+      </div>
+
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         {allPokemons &&
           allPokemons.map((pokemon, i) => (
-            <MatchUpCard pokemon={pokemon} key={i} id={i} />
+            <MatchUpCard
+              pokemon={pokemon}
+              key={i}
+              id={i}
+              changeNo={changeMatchUpNo}
+              changePoke={changePokemon}
+            />
           ))}
       </div>
     </div>

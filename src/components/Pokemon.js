@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Pokemon.css";
 
 const Pokemon = props => {
   const [pokemon, setPokemon] = useState();
@@ -43,6 +44,18 @@ const Pokemon = props => {
               </p>
               <p>Base Experience: {pokemon.base_experience}</p>
               <p>Accuracy: {pokeMoves.accuracy}</p>
+              {/* <div className="row">
+                <div className="col-5 y-center">
+                  <p className="y-center">Accuracy: {pokeMoves.accuracy} </p>
+                </div>
+                <div className="col-7">
+                  <progress
+                    class="nes-progress is-error"
+                    value={pokeMoves.accuracy}
+                    max="100"
+                  ></progress>
+                </div>
+              </div> */}
               {/*<progress
                 class="nes-progress is-error"
                 value={pokeMoves.accuracy}
@@ -51,6 +64,19 @@ const Pokemon = props => {
               <p>PP: {pokeMoves.pp}</p>
               <p>Priority: {pokeMoves.priority}</p>
               <p>Power: {pokeMoves.power}</p>
+              {/* <div className="row">
+                <div className="col-4 y-center">
+                  <p className="y-center">Power: {pokeMoves.power} </p>
+                </div>
+                <div className="col-8">
+                  <progress
+                    class="nes-progress is-error"
+                    value={pokeMoves.power}
+                    max="100"
+                  ></progress>
+                </div>
+              </div> */}
+
               {/*<progress
                 class="nes-progress is-error"
                 value={pokeMoves.power}
