@@ -5,25 +5,46 @@ import { Link } from "react-router-dom";
 
 function Favourites() {
   const [allPokemons, setAllPokemons] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+
+  const [favPokes, setFavPokes] = useState([]); // pokemon object
+  const [hasFavPokes, setHasFavePokes] = useState(false);
+
+  const [favourites, setFavourites] = useState([]); // pokemon id
   const [hasLength, setHasLength] = useState(false);
+
+  const [pokeCount, setPokeCount] = useState();
 
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
       setAllPokemons(res.data.results);
+      setPokeCount(res.data.count);
     });
     setFavourites(JSON.parse(localStorage.getItem("favouritesList")));
   }, []);
 
   useEffect(() => {
-    if (favourites) {
-      for (let i = 0; i < 20; i++) {
-        if (favourites[i] === true) {
-          setHasLength(true);
-        }
-      }
+    if (favourites.length !== 0) {
+      setHasLength(true);
+    }
+    let tempFavPokesArray = [];
+    for (let i = 0; i < favourites.length; i++) {
+      axios
+        .get(
+          `https://pokeapi.co/api/v2/pokemon/?limit=1&offset=${favourites[i] -
+            1}`
+        )
+        .then(res => {
+          tempFavPokesArray.push(res.data.results[0]);
+          if (tempFavPokesArray.length === favourites.length) {
+            setFavPokes(tempFavPokesArray);
+          }
+        });
     }
   }, [favourites]);
+
+  useEffect(() => {
+    setHasFavePokes(true);
+  }, [favPokes]);
 
   return (
     <>
@@ -43,12 +64,17 @@ function Favourites() {
       ) : null}
 
       <div className="d-flex justify-content-center align-items-center flex-wrap">
-        {allPokemons &&
-          favourites &&
-          allPokemons.map((pokemon, i) => {
-            if (favourites[i] === true) {
-              return <PokemonCard pokemon={pokemon} key={i} id={i} />;
-            }
+        {favPokes &&
+          pokeCount &&
+          favPokes.map((pokemon, i) => {
+            return (
+              <PokemonCard
+                pokemon={pokemon}
+                key={i}
+                id={favourites[i]}
+                pokeCount={pokeCount}
+              />
+            );
           })}
       </div>
     </>

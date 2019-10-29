@@ -15,7 +15,7 @@ function MatchUps() {
 
   useEffect(() => {
     localStorage.setItem("winner", JSON.stringify([2, 2, 2, 2]));
-    axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
+    axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
       setAllPokemons(res.data.results);
     });
   }, []);

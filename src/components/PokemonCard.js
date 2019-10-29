@@ -4,35 +4,60 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const PokemonCard = ({ pokemon, id }) => {
+const PokemonCard = ({ pokemon, id, pokeCount }) => {
   const [pokemonID, setPokemonID] = useState("");
-  const [favourite, setFavourite] = useState();
+  const [favourite, setFavourite] = useState(false);
 
   useEffect(() => {
     axios.get(pokemon.url).then(res => {
       setPokemonID(res.data.id);
     });
     if (localStorage.getItem("favouritesList") != null) {
-      setFavourite(
-        JSON.parse(localStorage.getItem("favouritesList"))[pokemonID - 1]
-      );
+      getFavourite();
     }
   }, [pokemonID]);
 
-  useEffect(() => {
-    if (localStorage.getItem("favouritesList") != null) {
-      let tempFavouriteList = JSON.parse(
-        localStorage.getItem("favouritesList")
-      );
-      tempFavouriteList[pokemonID - 1] = favourite;
-      localStorage.setItem("favouritesList", JSON.stringify(tempFavouriteList));
+  function getFavourite() {
+    let tempFavArray = JSON.parse(localStorage.getItem("favouritesList"));
+    for (let i = 0; i < pokeCount; i++) {
+      if (tempFavArray[i] === pokemonID) {
+        setFavourite(true);
+      }
     }
-  }, [favourite]);
+  }
+
+  function addFavourite() {
+    let tempFavArray = JSON.parse(localStorage.getItem("favouritesList"));
+    tempFavArray.unshift(pokemonID);
+    localStorage.setItem("favouritesList", JSON.stringify(tempFavArray));
+  }
+
+  function removeFavourite() {
+    let tempFavArray = JSON.parse(localStorage.getItem("favouritesList"));
+    for (let i = 0; i < tempFavArray.length; i++) {
+      if (tempFavArray[i] === pokemonID) {
+        tempFavArray.splice(i, 1);
+        localStorage.setItem("favouritesList", JSON.stringify(tempFavArray));
+      }
+    }
+  }
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("favouritesList") != null) {
+  //     let tempFavouriteList = JSON.parse(
+  //       localStorage.getItem("favouritesList")
+  //     );
+  //     tempFavouriteList[pokemonID - 1] = favourite;
+  //     localStorage.setItem("favouritesList", JSON.stringify(tempFavouriteList));
+  //   }
+  // }, [favourite]);
 
   function handleFavouriteClick() {
     if (favourite === false) {
+      addFavourite();
       setFavourite(true);
     } else if (favourite === true) {
+      removeFavourite();
       setFavourite(false);
     }
   }

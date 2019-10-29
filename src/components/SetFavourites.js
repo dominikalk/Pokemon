@@ -1,27 +1,6 @@
 function startFavourite() {
   if (localStorage.getItem("favouritesList") === null) {
-    const startArray = [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ];
+    const startArray = [];
     localStorage.setItem("favouritesList", JSON.stringify(startArray));
   }
 }

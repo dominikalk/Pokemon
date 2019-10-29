@@ -31,3 +31,13 @@
     font-size: 1.2vw;
   }
 }
+
+@media (min-width: 1200px) {
+  .flexing-font {
+    font-size: 1.2vw;
+  }
+
+  .flexing-font2 {
+    font-size: 0.9vw;
+  }
+}
