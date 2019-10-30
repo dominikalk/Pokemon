@@ -4,10 +4,7 @@ import PokemonCard from "./PokemonCard";
 import { Link } from "react-router-dom";
 
 function Favourites() {
-  const [allPokemons, setAllPokemons] = useState([]);
-
   const [favPokes, setFavPokes] = useState([]); // pokemon object
-  const [hasFavPokes, setHasFavePokes] = useState(false);
 
   const [favourites, setFavourites] = useState([]); // pokemon id
   const [hasLength, setHasLength] = useState(false);
@@ -16,7 +13,6 @@ function Favourites() {
 
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
-      setAllPokemons(res.data.results);
       setPokeCount(res.data.count);
     });
     setFavourites(JSON.parse(localStorage.getItem("favouritesList")));
@@ -41,10 +37,6 @@ function Favourites() {
         });
     }
   }, [favourites]);
-
-  useEffect(() => {
-    setHasFavePokes(true);
-  }, [favPokes]);
 
   return (
     <>

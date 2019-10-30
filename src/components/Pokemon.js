@@ -6,7 +6,6 @@ import "./Pokemon.css";
 const Pokemon = props => {
   const [pokemon, setPokemon] = useState();
   const [pokeMoves, setPokeMoves] = useState();
-  const [type, setType] = useState();
 
   useEffect(() => {
     axios

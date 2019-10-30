@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import MatchUpCard from "./MatchUpCard";
 import "../App.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
@@ -15,9 +15,11 @@ function MatchUps() {
 
   useEffect(() => {
     localStorage.setItem("winner", JSON.stringify([2, 2, 2, 2]));
-    axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
-      setAllPokemons(res.data.results);
-    });
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon?limit=60&offset=60")
+      .then(res => {
+        setAllPokemons(res.data.results);
+      });
   }, []);
 
   const changeMatchUpNo = isUp => {

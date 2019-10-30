@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./PokemonCard.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./MatchPokemonCard.css";
 
-const MatchPokemonCard = ({ id, setStat, compareNo }) => {
+const MatchPokemonCard = ({ id, compareNo, compare }) => {
   const [pokemonMoves, setPokemonMoves] = useState([]);
   const [pokemon, setPokemon] = useState("");
-  const [compare, setCompare] = useState([2, 2, 2, 2]);
 
   useEffect(() => {
-    setCompare(JSON.parse(localStorage.getItem("winner")));
     if (id != null) {
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -20,19 +17,6 @@ const MatchPokemonCard = ({ id, setStat, compareNo }) => {
         .then(res => setPokemonMoves(res.data));
     }
   }, [id]);
-
-  useEffect(() => {
-    if (pokemon && pokemonMoves) {
-      setStat([
-        pokemon.base_experience,
-        pokemonMoves.accuracy,
-        pokemonMoves.pp,
-        pokemonMoves.power
-      ]);
-    }
-  }, [pokemon, pokemonMoves]);
-
-  useEffect(() => {}, [compare]);
 
   const progressExp =
     compare[0] === 2
