@@ -8,7 +8,8 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke, selectedPokes }) => {
   const [selected, setSelected] = useState();
 
   useEffect(() => {
-    axios.get(pokemon.url).then(res => {
+    let url = pokemon.url.substring(0, pokemon.url.lastIndexOf("/"));
+    axios.get(url).then(res => {
       setPokemonID(res.data.id);
       let tempSelected = false;
       for (let i = 0; i < selectedPokes.length; i++) {
