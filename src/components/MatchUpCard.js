@@ -48,7 +48,6 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke, selectedPokes }) => {
   function handleSelectClick() {
     if (selected === false) {
       changePoke(pokemonID, true);
-      //debugger;
       changeNo(true);
     } else {
       changePoke(pokemonID, false);

@@ -11,6 +11,10 @@ function PokemonMatch() {
   const [hasCompared, setHasCompared] = useState(false);
 
   useEffect(() => {
+    if (localStorage.getItem("matchPokemon") == null) {
+      localStorage.setItem("matchPokemon", JSON.stringify([1, 2]));
+      localStorage.setItem("winner", JSON.stringify([2, 2, 2, 2]));
+    }
     setMatchPokemon(JSON.parse(localStorage.getItem("matchPokemon")));
   }, []);
 

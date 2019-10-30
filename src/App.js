@@ -24,7 +24,6 @@ function App() {
             <Route exact path="/favourites" component={Favourites} />
             <Route exact path="/matchups" component={MatchUps} />
             <Route exact path="/pokemon-match" component={PokemonMatch} />
-
             <Route component={PageNotFound} />
           </Switch>
         </div>

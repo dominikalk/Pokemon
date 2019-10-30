@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PokemonCard from "./PokemonCard";
 import { Link } from "react-router-dom";
+import startFavourite from "./SetFavourites";
 
 function Favourites() {
   const [favPokes, setFavPokes] = useState([]); // pokemon object
@@ -12,6 +13,7 @@ function Favourites() {
   const [pokeCount, setPokeCount] = useState();
 
   useEffect(() => {
+    startFavourite();
     axios.get("https://pokeapi.co/api/v2/pokemon/").then(res => {
       setPokeCount(res.data.count);
     });

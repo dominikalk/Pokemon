@@ -50,7 +50,6 @@ function MatchUps() {
   function handleMatchClick() {
     if (pokemonSelected.length < 2) {
       toast.error("Too Few - You must select 2 pokemon");
-      debugger;
     } else if (pokemonSelected.length === 2) {
       localStorage.setItem("matchPokemon", JSON.stringify(pokemonSelected));
       setRedirect(true);
