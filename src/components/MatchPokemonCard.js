@@ -47,7 +47,7 @@ const MatchPokemonCard = ({ id, compareNo, compare }) => {
       : "nes-progress is-error progress mb-2";
 
   return (
-    <div style={{ width: "48%", margin: "1%" }}>
+    <div className="how-wide-match">
       <div className="card mt-2" style={{ width: "18rem" }}>
         {pokemonMoves && pokemon && (
           <>
@@ -57,10 +57,13 @@ const MatchPokemonCard = ({ id, compareNo, compare }) => {
               alt={`${pokemon.name} pokemon`}
             />
             <div className="card-body">
-              <h4 className="card-title" style={{ fontSize: "2vw" }}>
+              <h4
+                className="card-title match-font-large"
+                // style={{ fontSize: "2vw" }}
+              >
                 <b>{pokemon.name}</b>
               </h4>
-              <p style={{ fontSize: "1.5vw", margin: "0px" }}>
+              <p className="match-font" style={{ margin: "0px" }}>
                 Base Experience: {pokemon.base_experience}
               </p>
               <progress
@@ -68,7 +71,7 @@ const MatchPokemonCard = ({ id, compareNo, compare }) => {
                 value={pokemon.base_experience}
                 max="240"
               ></progress>
-              <p style={{ fontSize: "1.5vw", margin: "0px" }}>
+              <p className="match-font" style={{ margin: "0px" }}>
                 Accuracy: {pokemonMoves.accuracy}
               </p>
               <progress
@@ -76,7 +79,7 @@ const MatchPokemonCard = ({ id, compareNo, compare }) => {
                 value={pokemonMoves.accuracy}
                 max="100"
               ></progress>
-              <p style={{ fontSize: "1.5vw", margin: "0px" }}>
+              <p className="match-font" style={{ margin: "0px" }}>
                 PP: {pokemonMoves.pp}
               </p>
               <progress
@@ -84,7 +87,7 @@ const MatchPokemonCard = ({ id, compareNo, compare }) => {
                 value={pokemonMoves.pp}
                 max="35"
               ></progress>
-              <p style={{ fontSize: "1.5vw", margin: "0px" }}>
+              <p className="match-font" style={{ margin: "0px" }}>
                 Power: {pokemonMoves.power}
               </p>
               <progress

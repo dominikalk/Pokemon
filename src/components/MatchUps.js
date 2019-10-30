@@ -5,6 +5,8 @@ import MatchUpCard from "./MatchUpCard";
 import "../App.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Scroll from "react-scroll";
+
 toast.configure();
 
 function MatchUps() {
@@ -12,15 +14,18 @@ function MatchUps() {
   const [noSelected, setNoSelected] = useState(0);
   const [pokemonSelected, setPokemonSelected] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [offset, setOffset] = useState(0);
+
+  let scroll = Scroll.animateScroll;
 
   useEffect(() => {
     localStorage.setItem("winner", JSON.stringify([2, 2, 2, 2]));
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=60&offset=60")
+      .get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset * 20}`)
       .then(res => {
         setAllPokemons(res.data.results);
       });
-  }, []);
+  }, [offset]);
 
   const changeMatchUpNo = isUp => {
     if (isUp === false) {
@@ -45,6 +50,7 @@ function MatchUps() {
   function handleMatchClick() {
     if (pokemonSelected.length < 2) {
       toast.error("Too Few - You must select 2 pokemon");
+      debugger;
     } else if (pokemonSelected.length === 2) {
       localStorage.setItem("matchPokemon", JSON.stringify(pokemonSelected));
       setRedirect(true);
@@ -52,6 +58,18 @@ function MatchUps() {
       toast.error("Too Many - You must select 2 pokemon");
     }
   }
+
+  const nextPageClick = () => {
+    scroll.scrollToTop();
+    setOffset(offset + 1);
+  };
+
+  const prevPageClick = () => {
+    if (offset > 0) {
+      scroll.scrollToTop();
+      setOffset(offset - 1);
+    }
+  };
 
   return (
     <div>
@@ -65,15 +83,25 @@ function MatchUps() {
 
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         {allPokemons &&
+          offset !== null &&
           allPokemons.map((pokemon, i) => (
             <MatchUpCard
+              selectedPokes={pokemonSelected}
               pokemon={pokemon}
-              key={i}
+              key={offset * Math.random() + Math.random()}
               id={i}
               changeNo={changeMatchUpNo}
               changePoke={changePokemon}
             />
           ))}
+      </div>
+      <div className="text-center">
+        <button className="nes-btn mr-2" onClick={prevPageClick}>
+          Prev
+        </button>
+        <button className="nes-btn ml-2" onClick={nextPageClick}>
+          Next
+        </button>
       </div>
     </div>
   );

@@ -6,3 +6,33 @@
 .progress {
   height: 25px !important;
 }
+
+@media (max-width: 767px) {
+  .how-wide-match {
+    width: 100%;
+    margin: 0%;
+  }
+
+  .match-font {
+    font-size: 2.7vw;
+  }
+
+  .match-font-large {
+    font-size: 3.2vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .how-wide-match {
+    width: 48%;
+    margin: 1%;
+  }
+
+  .match-font {
+    font-size: 1.5vw;
+  }
+
+  .match-font-large {
+    font-size: 2vw;
+  }
+}

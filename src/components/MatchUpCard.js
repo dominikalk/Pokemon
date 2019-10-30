@@ -3,14 +3,26 @@ import "./PokemonCard.css";
 import axios from "axios";
 import "../App.css";
 
-const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
+const MatchUpCard = ({ pokemon, id, changeNo, changePoke, selectedPokes }) => {
   const [pokemonID, setPokemonID] = useState("");
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState();
 
   useEffect(() => {
     axios.get(pokemon.url).then(res => {
       setPokemonID(res.data.id);
+      let tempSelected = false;
+      for (let i = 0; i < selectedPokes.length; i++) {
+        if (selectedPokes[i] === res.data.id) {
+          setSelected(true);
+          tempSelected = true;
+        }
+      }
+      if (tempSelected === false) {
+        setSelected(false);
+      }
     });
+    if (selected == null) {
+    }
   }, [pokemonID]);
 
   // useEffect(() => {
@@ -36,6 +48,7 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
   function handleSelectClick() {
     if (selected === false) {
       changePoke(pokemonID, true);
+      //debugger;
       changeNo(true);
     } else {
       changePoke(pokemonID, false);
@@ -61,13 +74,15 @@ const MatchUpCard = ({ pokemon, id, changeNo, changePoke }) => {
           {/*<Link to={`/pokemon/${pokemon.name}`} className="nes-btn">
             Select
         </Link>*/}
-          <button
-            className={selectedClass}
-            onClick={handleSelectClick}
-            style={{ width: "90%", margin: "5%" }}
-          >
-            <div className="flexing-font-card">Select</div>
-          </button>
+          {selected !== null && (
+            <button
+              className={selectedClass}
+              onClick={handleSelectClick}
+              style={{ width: "90%", margin: "5%" }}
+            >
+              <div className="flexing-font-card">Select</div>
+            </button>
+          )}
         </div>
       </div>
     </div>
